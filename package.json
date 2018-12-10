@@ -1,0 +1,27 @@
+{
+  "name": "react-pack-unpack",
+  "version": "1.0.0",
+  "description": "React component builder that allows for packing and unpacking React components to and from a database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibrand/react-pack-unpack.git"
+  },
+  "keywords": [
+    "react",
+    "db"
+  ],
+  "author": "Ilona Brand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibrand/react-pack-unpack/issues"
+  },
+  "homepage": "https://github.com/ibrand/react-pack-unpack#readme",
+  "dependencies": {
+    "@babel/core": "^7.2.0",
+    "react": "^16.6.3"
+  }
+}
