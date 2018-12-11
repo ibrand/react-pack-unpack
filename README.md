@@ -23,28 +23,35 @@ let [str, dependencies] = pack(component)
 let component = unpack(str, dependencies)
 ```
 
-where the `dependencies` is an object of react components, such as
-
-```js
-{
-  Component: require('react').Component
-}
-```
+where `dependencies` is an object of react components.
 
 ## example
 
-```jsx
+```js
 const React = require('react')
-const { pack, unpack } = require('react-pack-unpack')
+const { render } = require('react-dom')
+const { unpack } = require('react-pack-unpack')
 
-const Greeting = name => (
-  <div>Hello {name}!</div>
+const Title = ({ title }) => <h1>{title}</h1>
+
+const Section = ({ title, body, click }) => (
+  <section onClick={click}>
+    <Title title={title} />
+    <p dangerouslySetInnerHTML={{__html: body}} />
+  </section>
 )
 
-let [str, deps] = pack(Greeting)
-console.log(str) // <div>Hello {name}</div>
-console.log(deps) // {}
+let Hello = unpack(`
+  <Section
+    title={title}
+    body={body}
+    click={click}
+  />`, { Section })
 
-let UnpackedGreeting = unpack(str)
-console.log(Greeting.toString() === UnpackedGreeting.toString())
+render(Hello({
+  title: 'Hello world',
+  body: `We're dangerous`,
+  click: () => console.log('Clickity click')
+}), document.body)
+
 ```

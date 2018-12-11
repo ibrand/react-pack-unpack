@@ -1,25 +1,22 @@
-var React = require("react");
-var babel = require("@babel/core");
-import { transform } from "@babel/core";
-import * as babel from "@babel/core";
+const React = require('react')
+const jsx = require('jsx-transform')
 
-function pack(componentJsxString, dependencies, variables) {
-  babel.transform(componentJsxString, "_", function(err, result) {
-    console.log(result); // => { code, map, ast }
-  });
+function unpack (str = ``, deps = {}) {
+  let code = jsx.fromString(str.trim(), {
+    factory: 'React.createElement'
+  })
+  return function (props = {}) {
+    let depNames = Object.keys(deps)
+    let propNames = Object.keys(props)
+    let fn = Function.apply(Function, ['React', ...depNames, ...propNames, `
+        "use strict";
+        return ${code}
+      `])
+    return fn.apply(fn, [React, ...Object.values(deps), ...Object.values(props)])
+  }
 }
 
-str = `
-<Form action={action}>
-<h1>{title}</h1>
-<Input name={name} placeholder={name} />
-<Button>Submit</Button>
-</Form>
-`;
-
-pack(str, "", "");
-
-function unpack() {}
+function pack () {}
 
 module.exports = {
   pack,
