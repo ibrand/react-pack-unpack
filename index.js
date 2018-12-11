@@ -18,3 +18,10 @@ str = `
 `;
 
 pack(str, "", "");
+
+function unpack() {}
+
+module.exports = {
+  pack,
+  unpack
+}
