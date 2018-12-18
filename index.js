@@ -2,9 +2,15 @@ const React = require('react')
 const jsx = require('jsx-transform')
 
 function unpack (str = ``, deps = {}) {
-  let code = jsx.fromString(str.trim(), {
-    factory: 'React.createElement'
-  })
+  let code
+  try {
+    code = jsx.fromString(str.trim(), {
+      factory: 'React.createElement'
+    })
+  } catch (e) {
+    console.error(e)
+    return () => {}
+  }
   return function (props = {}) {
     let depNames = Object.keys(deps)
     let propNames = Object.keys(props)
@@ -12,7 +18,12 @@ function unpack (str = ``, deps = {}) {
         "use strict";
         return ${code}
       `])
-    return fn.apply(fn, [React, ...Object.values(deps), ...Object.values(props)])
+    try {
+      return fn.apply(fn, [React, ...Object.values(deps), ...Object.values(props)])
+    } catch (e) {
+      console.error(e)
+      return ``
+    }
   }
 }
 
