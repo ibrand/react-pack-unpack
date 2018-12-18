@@ -1,5 +1,6 @@
 const React = require('react')
 const jsx = require('jsx-transform')
+const toString = require('../jsx-to-string')
 
 function unpack (str = ``, deps = {}) {
   let code
@@ -27,18 +28,7 @@ function unpack (str = ``, deps = {}) {
   }
 }
 
-// function pack () {
-  // const Comp = ({ title, body, click }) => (
-    // <section onClick={click}>
-    // <Title title={title} />
-      // <p dangerouslySetInnerHTML={{__html: body}} />
-    // </section>
-  // )
-
-  // console.log(Comp)
-// }
-
 module.exports = {
-  // pack,
+  pack: toString,
   unpack
 }
