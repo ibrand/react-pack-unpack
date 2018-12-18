@@ -1,6 +1,6 @@
 const React = require('react')
 const jsx = require('jsx-transform')
-const toString = require('../jsx-to-string')
+const toString = require('jsx-to-string')
 
 function unpack (str = ``, deps = {}) {
   let code
