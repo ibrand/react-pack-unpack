@@ -11,6 +11,8 @@ const Section = ({ title, click, children }) => (
   </section>
 )
 
+// By listing Section as a dependency, we indicate that Section is the
+// container for us to unpack our jsx into
 let Hello = unpack(`
   <Section title={title} click={click}>
     <p>Beep boop</p>
@@ -22,6 +24,7 @@ let jsxString = pack(Hello({
   click: () => console.log('Clickity click')
 }), { useFunctionCode: true })
 
+// jsxString will look like this in the DB:
 /*
   <Section title={`Hello world`}
     click={function click() {
