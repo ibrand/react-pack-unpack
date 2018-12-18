@@ -11,47 +11,18 @@ React component builder that allows for packing and unpacking React components t
 const { pack, unpack } = require('react-pack-unpack')
 ```
 
-#### `pack : ReactComponent -> (String, Dependencies)`
+#### `pack : ReactElement -> (String, Dependencies)`
+
+Note: `pack` is not exactly complementary to `unpack`.
 
 ```js
-let [str, dependencies] = pack(component)
+let jsxstr = pack(element)
 ```
 
 #### `unpack : (String, Dependencies) -> ReactComponent`
 
 ```js
-let component = unpack(str, dependencies)
+let component = unpack(jsxstr, dependencies)
 ```
 
 where `dependencies` is an object of react components.
-
-## example
-
-```js
-const React = require('react')
-const { render } = require('react-dom')
-const { unpack } = require('react-pack-unpack')
-
-const Title = ({ title }) => <h1>{title}</h1>
-
-const Section = ({ title, body, click }) => (
-  <section onClick={click}>
-    <Title title={title} />
-    <p dangerouslySetInnerHTML={{__html: body}} />
-  </section>
-)
-
-let Hello = unpack(`
-  <Section
-    title={title}
-    body={body}
-    click={click}
-  />`, { Section })
-
-render(Hello({
-  title: 'Hello world',
-  body: `We're dangerous`,
-  click: () => console.log('Clickity click')
-}), document.body)
-
-```

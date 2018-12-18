@@ -4,7 +4,7 @@ const { pack, unpack } = require('./')
 
 const Title = ({ title }) => <h1>{title}</h1>
 
-const Section = ({ title, children, click }) => (
+const Section = ({ title, click, children }) => (
   <section onClick={click}>
     <Title title={title} />
     {children}
@@ -12,10 +12,33 @@ const Section = ({ title, children, click }) => (
 )
 
 let Hello = unpack(`
-  <Section title={title} click={click}>{children}</Section>`, { Section })
+  <Section title={title} click={click}>
+    <p>Beep boop</p>
+  </Section>
+`, { Section })
 
-render(Hello({
+let jsxString = pack(Hello({
   title: 'Hello world',
-  children: (<Title title='beep boop' />),
   click: () => console.log('Clickity click')
-}), document.body)
+}), { useFunctionCode: true })
+
+/*
+  <Section title={`Hello world`}
+    click={function click() {
+        return console.log('Clickity click');
+      }}>
+    <p>
+      Beep boop
+    </p>
+  </Section>
+*/
+
+render(
+  <div>
+    <Hello
+      title='Hello world'
+      click={() => console.log('Clickity click')} />
+    <hr />
+    <pre>{jsxString}</pre>
+  </div>
+, document.body)
