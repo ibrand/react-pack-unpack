@@ -4,22 +4,18 @@ const { pack, unpack } = require('./')
 
 const Title = ({ title }) => <h1>{title}</h1>
 
-const Section = ({ title, body, click }) => (
+const Section = ({ title, children, click }) => (
   <section onClick={click}>
     <Title title={title} />
-    <p dangerouslySetInnerHTML={{ __html: body }} />
+    {children}
   </section>
 )
 
 let Hello = unpack(`
-  <Section
-    title={title}
-    body={body}
-    click={click}
-  />`, { Section })
+  <Section title={title} click={click}>{children}</Section>`, { Section })
 
 render(Hello({
   title: 'Hello world',
-  body: `We're dangerous`,
+  children: (<Title title='beep boop' />),
   click: () => console.log('Clickity click')
 }), document.body)

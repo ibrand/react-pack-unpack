@@ -4,7 +4,8 @@
   "description": "React component builder that allows for packing and unpacking React components to and from a database",
   "main": "index.js",
   "scripts": {
-    "start": "budo example.js --live -- -t [ babelify --presets [ @babel/preset-env @babel/preset-react ] ]"
+    "start": "budo example.js --live -- -t [ babelify --presets [ @babel/preset-env @babel/preset-react ] ]",
+    "reproduce": "budo reproduce.js --live -- -t [ babelify --presets [ @babel/preset-env @babel/preset-react ] ]"
   },
   "repository": {
     "type": "git",
