@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/ibrand/react-pack-unpack#readme",
   "dependencies": {
-    "jsx-to-string": "^1.4.0",
+    "jsx-to-string": "github:lukeburns/jsx-to-string",
     "jsx-transform": "^2.4.0",
     "react": "^16.6.3"
   },
