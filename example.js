@@ -7,7 +7,7 @@ const Title = ({ title }) => <h1>{title}</h1>
 const Section = ({ title, body, click }) => (
   <section onClick={click}>
     <Title title={title} />
-    <p dangerouslySetInnerHTML={{__html: body}} />
+    <p dangerouslySetInnerHTML={{ __html: body }} />
   </section>
 )
 

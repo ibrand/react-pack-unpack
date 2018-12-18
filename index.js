@@ -27,9 +27,18 @@ function unpack (str = ``, deps = {}) {
   }
 }
 
-function pack () {}
+// function pack () {
+  // const Comp = ({ title, body, click }) => (
+    // <section onClick={click}>
+    // <Title title={title} />
+      // <p dangerouslySetInnerHTML={{__html: body}} />
+    // </section>
+  // )
+
+  // console.log(Comp)
+// }
 
 module.exports = {
-  pack,
+  // pack,
   unpack
 }
