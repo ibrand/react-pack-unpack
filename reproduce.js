@@ -11,8 +11,10 @@ const Section = ({ title, children, click }) => (
   </section>
 )
 
-// const javascriptCodeFromJSXAsString = jsx.fromString(`<Section title={`test title`} children={`this is a child text node`}>{`this should be a child text node but is not`}</Section>`, {
-//   factory: 'React.createElement'
-// })
+const javascriptCodeFromJSXAsString = jsx.fromString(`<Section title={\`test title\`}>{\`this should be a child text node but is not\`}</Section>`, {
+  factory: 'React.createElement',
+  arrayChildren: false
+})
+console.log(javascriptCodeFromJSXAsString)
 
 render(Section({ title: 'test' }, [`this should be a child text node`]), document.body)
