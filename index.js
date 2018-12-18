@@ -6,7 +6,8 @@ function unpack (str = ``, deps = {}) {
   let code
   try {
     code = jsx.fromString(str.trim(), {
-      factory: 'React.createElement'
+      factory: 'React.createElement',
+      passUnknownTagsToFactory: true
     })
   } catch (e) {
     console.error(e)
